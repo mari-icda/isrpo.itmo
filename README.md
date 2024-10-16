@@ -1,71 +1,56 @@
-# mari README
+# **Translater for A2 students** README
 
-This is the README for your extension "mari". After writing up a brief description, we recommend including the following sections.
+This extension is designed for convenient text translation as an assistant to an unfortunate student with A2 ＼(◎o◎)／
+
+## Work process
+
+1. Выделение требующей перевода строки кода
+2. Инициализация расширения путем сочетания быстрых клавиш `ctrl+shift+/`
+3. Выбор языка на который требуется перевести текст в сплывающем окне:
+ 
+![](images/Выбор_языка.png)
+
+4. Сообщение о успешном выполнении перевода и изменение текста на идентичный в нужном языке
+
+![](images/Перевод_успешен.png)
+
+4. При наличии ошибки она будет выведена в всплывающем окне. В DebugConsole появится текст для перевода, исходный целивой язык и текст ошибки
+
+![](images/окно_ошибки.png)
+
+![](images/дебаг.png)
 
 ## Features
+### translateCommand
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Системное название команды:** `translate-this-text->_<`
+- **Вызывное название команды:**  `Translate Selected Text`
+- **Требует:** активный редактор
+- **Получает на вход:** выделение текст в редакторе
+- **Работа команды:**
+1. Получаем текст из выделения и убираем лишние пробелы. Если текст не выделен, показывается сообщение и выполнение заканчивается.
+2. Пользователю предлагается выбрать целевой язык для перевода. Это делается с помощью  `showQuickPick`
+3. Исходный язык определяется на основе выбранного целевого языка. Если целью был выбран английский, значит исходный — русский, и наоборот.
+4. Внутри блока  `try` мы отправляем `GET-запрос к API MyMemory`. 
+    Запрос включает:
+    - `q`: текст, который нужно перевести.
+    - `langpair`: сочетание исходного и целевого языков.
+5. Получения ответа от API и извлечение нужного текста.
+6. Змена выделенный текст в редакторе на переведённый текст.
+- **По завершении перевода:**
+            - При успешном переводе отоброжается уведомление об успехе.
+            - При возникновении ошибки, она обрабатывается в блоке `catch`. Сообщение об ошибке выводится в консоль и отображается пользователю.
 
-For example if there is an image subfolder under your extension project workspace:
+- **Пример работы:**
+Входная строчка: *Hi, I am a student at ITMO University*
+Выходная строчка: *Привет, я студент Университета ИТМО*
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
 
 ### 1.0.0
 
 Initial release of ...
 
-### 1.0.1
 
-Fixed issue #.
 
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+## Автор
+Акулиничева Мария Андреевна, M3100 # itmo-ISRPO
