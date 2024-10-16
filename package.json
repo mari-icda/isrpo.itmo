@@ -1,0 +1,56 @@
+{
+  "name": "translate-ru-en--en-ru",
+  "displayName": "Translate RU-EN EN-RU",
+  "description": "Plugin for translating text from Russian to English and from English to Russian",
+  "version": "0.0.1",
+  "publisher": "mari",
+  "engines": {
+    "vscode": "^1.94.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:translate-text.translate"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "translate-this-text->_<",
+        "title": "Translate Selected Text"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "translate-this-text->_<",
+        "key": "ctrl+shift+/",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.8",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.94.0",
+    "@typescript-eslint/eslint-plugin": "^8.7.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.11.1",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@types/google-translate-api": "^2.3.5",
+    "axios": "^1.7.7",
+    "google-translate-api": "^2.3.0"
+  }
+}
