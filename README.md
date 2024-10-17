@@ -4,18 +4,18 @@ This extension is designed for convenient text translation as an assistant to an
 
 ## Work process
 
-1. Выделение требующей перевода строки кода
-2. Инициализация расширения путем сочетания быстрых клавиш `ctrl+shift+/`
-3. Выбор языка на который требуется перевести текст в сплывающем окне:
+1. Highlighting a line of code requiring translation
+2. Initializing the extension by shortcut `ctrl+shift+/`
+3. Select the language into which you want to translate the text in the pop-up window:
  
 ![](images/Выбор_языка.png)
 
-4. Сообщение о успешном выполнении перевода и изменение текста на идентичный в нужном языке
+4. A message about the successful completion of the translation and changing the text to an identical one in the desired language
 
 ![](images/Перевод_успешен.png)
 
-4. При наличии ошибки она будет выведена в всплывающем окне. В DebugConsole появится текст для перевода, исходный целивой язык и текст ошибки
-
+4. If there is an error, it will be displayed in a pop-up window. The text to be translated, the source target language and the error text will appear in DebugConsole
+   
 ![](images/окно_ошибки.png)
 
 ![](images/дебаг.png)
@@ -23,27 +23,27 @@ This extension is designed for convenient text translation as an assistant to an
 ## Features
 ### translateCommand
 
-- **Системное название команды:** `translate-this-text->_<`
-- **Вызывное название команды:**  `Translate Selected Text`
-- **Требует:** активный редактор
-- **Получает на вход:** выделение текст в редакторе
-- **Работа команды:**
-1. Получаем текст из выделения и убираем лишние пробелы. Если текст не выделен, показывается сообщение и выполнение заканчивается.
-2. Пользователю предлагается выбрать целевой язык для перевода. Это делается с помощью  `showQuickPick`
-3. Исходный язык определяется на основе выбранного целевого языка. Если целью был выбран английский, значит исходный — русский, и наоборот.
-4. Внутри блока  `try` мы отправляем `GET-запрос к API MyMemory`. 
-    Запрос включает:
-    - `q`: текст, который нужно перевести.
-    - `langpair`: сочетание исходного и целевого языков.
-5. Получения ответа от API и извлечение нужного текста.
-6. Змена выделенный текст в редакторе на переведённый текст.
-- **По завершении перевода:**
-            - При успешном переводе отоброжается уведомление об успехе.
-            - При возникновении ошибки, она обрабатывается в блоке `catch`. Сообщение об ошибке выводится в консоль и отображается пользователю.
+- ** Team system name:** `translate-this-text->_<`
+- ** Callsign:**  `Translate Selected Text`
+- **Requires:** active editor
+- **Receives input:** selection of text in the editor
+- ** Team work:**
+1. Get the text from the selection and remove unnecessary spaces. If the text is not highlighted, a message is displayed and execution ends.
+2. The user is asked to select the target language to be translated. This is done with  `showQuickPick`
+3. The source language is determined based on the selected target language. If the target was English, then the original target is Russian, and vice versa.
+4. Inside the  `try` block, we send a `get request to the MyMemory API`.
+    The request includes:
+    - `q`: the text to be translated.
+    - `langpair`: a combination of source and target languages.
+5. Getting a response from the API and extracting the desired text.
+6. Change the selected text in the editor to the translated text.
+- **Upon completion of the transfer:**
+            - If the transfer is successful, a success notification is displayed.
+            - If an error occurs, it is processed in the `catch` block. The error message is displayed in the console and displayed to the user.
 
 - **Пример работы:**
-Входная строчка: *Hi, I am a student at ITMO University*
-Выходная строчка: *Привет, я студент Университета ИТМО*
+Input line: *Hi, I am a student at ITMO University*
+Output line: *Привет, я студент Университета ИТМО*
 
 
 ### 1.0.0
@@ -52,5 +52,5 @@ Initial release of ...
 
 
 
-## Автор
+## Author
 Акулиничева Мария Андреевна, M3100 # itmo-ISRPO
